@@ -1,8 +1,15 @@
-# Source
+# elixir-start
 
-**TODO: Add description**
+this is a project to learn elixir and maybe provide some tooling (see `make`) around it for local development
 
-## Installation
+## help
+```
+make
+```
+
+## elixir part
+
+### Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed
 by adding `source` to your list of dependencies in `mix.exs`:
