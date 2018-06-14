@@ -11,12 +11,17 @@ HELP_FUN = \
 	print "\n"; }
 
 UID:=$(shell id -u)
+GID:=$(shell id -g)
 PWD:=$(shell pwd)
 
 .PHONY: help
 help: ##@other Show this help.
 	@perl -e '$(HELP_FUN)' $(MAKEFILE_LIST)
 
+.PHONY: setup
+setup: ##@setup builds the docker image for the cli make cmd
+	docker build -t elixir-hex ./docker/cli/
+
 .PHONY: cli
 cli: ##@setup set up a docker container with mounted source where you can execute all elixir commands
-	docker run -it --rm  -u $(UID)  -v $(PWD):/source elixir:1.6.5 bash -c "cd /source; bash;"
+	docker run -it --rm  -u $(UID):$(GID) -v $(PWD):/source -w /source elixir-hex bash
