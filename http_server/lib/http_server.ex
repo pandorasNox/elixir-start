@@ -1,18 +1,15 @@
 defmodule HttpServer do
-  @moduledoc """
-  Documentation for HttpServer.
-  """
+  import Plug.Conn
 
-  @doc """
-  Hello world.
+  def init(options) do
+    # initialize options
 
-  ## Examples
+    options
+  end
 
-      iex> HttpServer.hello
-      :world
-
-  """
-  def hello do
-    :world
+  def call(conn, _opts) do
+    conn
+    |> put_resp_content_type("text/plain")
+    |> send_resp(200, "Hello world")
   end
 end
